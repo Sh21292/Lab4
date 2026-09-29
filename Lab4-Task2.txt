@@ -1,0 +1,25 @@
+27 ?- consult(['c:/Users/Essam/Downloads/Lab04_family_facts.pl']).
+true.
+
+28 ?- female(X).
+X = sara ;
+X = nora.
+
+29 ?- male(_).
+true .
+
+30 ?-  parent(GP, P), parent(P, faisal).
+GP = ali,
+P = muhammad .
+
+31 ?-  parent(ahmad, X), female(X).
+X = sara ;
+X = nora .
+
+32 ?- parent(P, ahmad), parent(P, muhammad).
+P = ali.
+
+33 ?- parent(P, khan), parent(P, nora), male(khan), khan \= nora.  
+P = ahmad.
+
+34 ?-                          

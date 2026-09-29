@@ -1,0 +1,57 @@
+17 ?-  house = house.    
+true.
+
+Explanation: Same atom on both sides, so they unify directly with no need to fill in anything
+
+18 ?- house = abc.         
+false.
+
+ Explanation: Two different atoms with no variables involved, so there's no way to make them match.
+
+19 ?-  edge(a,b) = edge(C,b).   
+C = a.
+
+Explanation: Same functor (edge) and same arity (2); the second arguments already match (b = b), so C unifies with a.
+
+
+20 ?- edge(a,d) = edge(C,B).    
+C = a,
+B = d.
+
+Explanation:   C and B are unbound variables, so they simply take the corresponding values from the other side.
+
+
+21 ?- edge(C,B) = edge(a,d).      
+C = a,
+B = d.
+
+Explanation:Same as above but reversed — unification works in either direction, since = is symmetric.
+
+22 ?-  edge(A,f(g,h)) = edge(a,B).       
+A = a,
+B = f(g, h).
+
+ Explanation:A unifies with the atom a, and B unifies with the whole compound term f(g,h) as a single structure.
+
+23 ?- edge(A,A) = edge(b,c).   
+false.
+
+ Explanation: A is the same variable in both argument positions, so it would need to equal both b and c simultaneously — impossible since b ≠ c.
+
+
+24 ?- edge(A,A) = edge(b,b).  
+A = b.
+
+ Explanation:Both positions hold the same value (b), so the single variable A can consistently bind to b in both places.
+
+
+25 ?- A = B, B = f.          
+A = B, B = f.
+
+ Explanation:A and B first become linked as the same variable (no value yet), then B unifies with f. Prolog prints the binding chain as it occurred rather than fully resolving it, so it shows A = B, B = f instead of collapsing both to f.
+
+
+26 ?-  A = B, B = f, A = e.    
+false.
+
+ Explanation:By this point A is chained to B, which is bound to f. Trying to unify A with e fails, since A effectively already equals f, and f ≠ e.
